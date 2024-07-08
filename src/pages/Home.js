@@ -2,32 +2,33 @@ import React, { useEffect, useState } from "react";
 import supabase from "../config/supabaseConfig";
 
 function Home() {
-  const [fetchError, setFectError] = useState(null);
-  const [student, setStudent] = useState(null);
+  const [fetchError, setFetchError] = useState(null);
+  const [students, setStudents] = useState([]);
 
   useEffect(() => {
-    const fetchStudent = async () => {
-      const { data, error } = await supabase.from("Student").select();
-
+    console.log(supabase);
+    const fetchStudents = async () => {
+      let { data, error } = await supabase.from("student").select();
       if (error) {
-        setFectError("Could not fetch data");
-        setStudent(null);
+        setFetchError("coulf'nt display data");
+        throw error;
       }
-      if (data) {
-        setStudent(data);
-        setFectError(null);
-      }
+      setStudents(data);
     };
-    fetchStudent();
+
+    fetchStudents();
   }, []);
 
   return (
-    <div>
+    <div className="student">
       {fetchError && <p>{fetchError}</p>}
-      {student && (
+      {students.length > 0 && (
         <div>
-          {student.map((s) => (
-            <p key={s.id}>s.name</p>
+          {students.map((student) => (
+            <div key={student.id}>
+              <h1>{student.department}</h1>
+              <p>{student.f_name}</p>
+            </div>
           ))}
         </div>
       )}
