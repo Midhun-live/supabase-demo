@@ -1,14 +1,36 @@
-.heading{
+/* *{
+  height: 100vh;
+  width: 100vw;
+} */
+
+/* .heading{
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  height: 20vh;
+}
+
+
+.overall-student-box{ */
+  /* width:80%; */
+  /* display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
 }
 
-
-.student{
-  height: 100vh;
-  width: 100%;
+.student-box{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 100px;
+  height: 150px;
+  padding: 20px;
+} */
+
+.overall-student-box{
+  display: flex;
+  border: 1px solid black;
+  gap: 20px;
 }
