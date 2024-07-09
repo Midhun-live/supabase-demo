@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import supabase from "../config/supabaseConfig";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [fetchError, setFetchError] = useState(null);
@@ -23,11 +24,16 @@ function Home() {
     <div className="student">
       {fetchError && <p>{fetchError}</p>}
       {students.length > 0 && (
-        <div>
+        <div className="overall-student-box">
           {students.map((student) => (
-            <div key={student.id}>
+            <div key={student.id} className="student-box">
               <h1>{student.department}</h1>
               <p>{student.f_name}</p>
+              <div className="buttons">
+                <Link to={"/" + student.id}>
+                  <i className="material-icons">edit</i>
+                </Link>
+              </div>
             </div>
           ))}
         </div>
